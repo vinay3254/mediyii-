@@ -75,7 +75,7 @@ TOOL_CONFIG = {
     },
     'blood_smear': {
         'feature_names': [
-            'rbc_count', 'wbc_count', 'platelet_count', 'wbc_rbc_ratio'
+            'rbc_count', 'wbc_count', 'platelet_count', 'wbc_rbc_ratio', 'platelet_to_rbc_ratio'
         ],
         'label_map': {0: 'normal', 1: 'abnormal'},
         'extractor_module': 'feature_extractors.blood_smear',

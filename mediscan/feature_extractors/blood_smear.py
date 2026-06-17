@@ -17,7 +17,7 @@ import cv2
 import numpy as np
 
 FEATURE_NAMES = [
-    'rbc_count', 'wbc_count', 'platelet_count', 'wbc_rbc_ratio',
+    'rbc_count', 'wbc_count', 'platelet_count', 'wbc_rbc_ratio', 'platelet_to_rbc_ratio',
 ]
 
 
@@ -94,6 +94,7 @@ def count_blood_cells(img_bgr: np.ndarray) -> dict:
     # ── Clinical ratios ───────────────────────────────────────────────────────
     # Normal RBC:WBC ratio is ~500:1 (500 RBCs per WBC)
     wbc_rbc_ratio = wbc_count / (rbc_count + 1e-9)
+    platelet_to_rbc_ratio = platelet_count / (rbc_count + 1e-9)
     # CLINICAL NOTE: Elevated WBC (leukocytosis) >10,500/µL suggests infection/inflammation
     high_wbc_flag = wbc_count > 15  # relative to field count
 
@@ -133,6 +134,7 @@ def count_blood_cells(img_bgr: np.ndarray) -> dict:
         'wbc_count': wbc_count,
         'platelet_count': platelet_count,
         'wbc_rbc_ratio': round(wbc_rbc_ratio, 5),
+        'platelet_to_rbc_ratio': round(platelet_to_rbc_ratio, 5),
         'rbc_mean_area': round(rbc_mean_area, 1),
         'wbc_mean_area': round(wbc_mean_area, 1),
         'high_wbc_flag': high_wbc_flag,

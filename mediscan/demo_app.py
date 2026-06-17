@@ -814,11 +814,12 @@ elif selected.startswith("13."):
                                  caption="WBC HSV mask (H:120-160°)",
                                  use_column_width=True)
 
-                    c1,c2,c3,c4 = st.columns(4)
+                    c1,c2,c3,c4,c5 = st.columns(5)
                     c1.metric("RBC Count", res['rbc_count'])
                     c2.metric("WBC Count", res['wbc_count'])
                     c3.metric("Platelets", res['platelet_count'])
                     c4.metric("WBC:RBC Ratio", f"{res['wbc_rbc_ratio']:.4f}")
+                    c5.metric("PLT:RBC Ratio", f"{res['platelet_to_rbc_ratio']:.4f}")
 
                     with st.expander("📋 Normal Reference Ranges"):
                         st.markdown("""
