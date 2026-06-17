@@ -20,6 +20,7 @@ from skimage.feature import graycomatrix, graycoprops
 FEATURE_NAMES = [
     'asymmetry',
     'border_score',
+    'solidity',
     'color_std_L',
     'color_std_A',
     'color_std_B',
@@ -100,6 +101,14 @@ def extract_lesion_features(img_bgr: np.ndarray) -> dict | None:
     perimeter = cv2.arcLength(cnt, True)
     border_score = float(perimeter ** 2) / (4 * np.pi * area + 1e-9)
 
+    # ── Solidity ─────────────────────────────────────────────────────────────
+    # CLINICAL NOTE: Solidity (area / convex hull area) measures boundary shape.
+    # Benign moles are usually compact and convex (solidity close to 1.0).
+    # Melanomas often have irregular/concave borders, lowering solidity.
+    hull = cv2.convexHull(cnt)
+    hull_area = cv2.contourArea(hull)
+    solidity = float(area) / (hull_area + 1e-9)
+
     # ── C — Color variance ────────────────────────────────────────────────────
     # CLINICAL NOTE: Melanomas often contain multiple pigment types (brown, black,
     # red, white). High std in LAB channels quantifies this heterogeneity.
@@ -143,6 +152,7 @@ def extract_lesion_features(img_bgr: np.ndarray) -> dict | None:
     feat = {
         'asymmetry': asymmetry,
         'border_score': border_score,
+        'solidity': solidity,
         'color_std_L': float(color_std[0]),
         'color_std_A': float(color_std[1]),
         'color_std_B': float(color_std[2]),

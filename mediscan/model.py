@@ -36,7 +36,7 @@ from sklearn.metrics import classification_report, confusion_matrix
 TOOL_CONFIG = {
     'melanoma': {
         'feature_names': [
-            'asymmetry', 'border_score', 'color_std_L', 'color_std_A',
+            'asymmetry', 'border_score', 'solidity', 'color_std_L', 'color_std_A',
             'color_std_B', 'diameter', 'glcm_contrast', 'glcm_homogeneity'
         ],
         'label_map': {0: 'benign', 1: 'malignant'},

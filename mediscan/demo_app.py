@@ -167,6 +167,7 @@ if selected.startswith("1."):
                         st.markdown("**Extracted ABCDE Features:**")
                         show_feature_bar("A — Asymmetry", feats['asymmetry'], 1.0, '#ef4444')
                         show_feature_bar("B — Border Score", feats['border_score'], 5.0, '#f59e0b')
+                        show_feature_bar("B — Solidity (Convexity)", feats['solidity'], 1.0, '#eab308')
                         show_feature_bar("C — Colour Std L*", feats['color_std_L'], 50, '#a855f7')
                         show_feature_bar("C — Colour Std a*", feats['color_std_A'], 50, '#ec4899')
                         show_feature_bar("D — Diameter (px)", feats['diameter'], 150, '#3d8bff')
@@ -195,6 +196,7 @@ if selected.startswith("1."):
 |---------|-----------------|
 | **Asymmetry > 0.45** | Melanomas are asymmetric; benign moles symmetric |
 | **Border > 2.0** | Irregular, notched border = malignant sign |
+| **Solidity < 0.90** | Low solidity (notched, non-convex boundaries) = suspicious |
 | **Colour Std > 18** | Multiple pigment shades (brown/black/red/white) |
 | **Diameter > 60px** | >6mm in clinical photos = ABCDE criterion D |
 | **GLCM Contrast** | Textural heterogeneity of malignant tissue |
