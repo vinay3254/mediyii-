@@ -58,7 +58,7 @@ TOOL_CONFIG = {
         'input_type': 'image'
     },
     'jaundice': {
-        'feature_names': ['b_star_mean', 'b_star_std', 'l_mean', 'a_mean'],
+        'feature_names': ['b_star_mean', 'b_star_std', 'l_mean', 'a_mean', 'b_star_to_a_star_ratio'],
         'label_map': {0: 'normal', 1: 'jaundiced'},
         'extractor_module': 'feature_extractors.jaundice',
         'extractor_fn': 'extract_jaundice_features',

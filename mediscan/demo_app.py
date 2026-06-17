@@ -304,11 +304,12 @@ elif selected.startswith("3."):
                                  caption="b* channel (brighter = more yellow)",
                                  use_column_width=True)
 
-                    c1,c2,c3,c4 = st.columns(4)
+                    c1,c2,c3,c4,c5 = st.columns(5)
                     c1.metric("b* Mean", f"{res['b_star_mean']:.1f}")
                     c2.metric("b* Std", f"{res['b_star_std']:.1f}")
                     c3.metric("L* Mean", f"{res['l_mean']:.1f}")
-                    c4.metric("Calibrated", "Yes" if res['calibrated'] else "No ⚠️")
+                    c4.metric("b*/a* Ratio", f"{res['b_star_to_a_star_ratio']:.2f}")
+                    c5.metric("Calibrated", "Yes" if res['calibrated'] else "No ⚠️")
 
                     with st.expander("🧪 Calibration Instructions"):
                         st.markdown("""

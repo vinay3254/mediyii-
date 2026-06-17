@@ -20,7 +20,7 @@ Calibration note:
 import cv2
 import numpy as np
 
-FEATURE_NAMES = ['b_star_mean', 'b_star_std', 'l_mean', 'a_mean']
+FEATURE_NAMES = ['b_star_mean', 'b_star_std', 'l_mean', 'a_mean', 'b_star_to_a_star_ratio']
 JAUNDICE_THRESHOLD = 145   # b* (0-255 LAB scale) above this → flag
 
 
@@ -107,6 +107,7 @@ def extract_jaundice_features(img_bgr: np.ndarray,
     b_star_std  = float(b_star.std())
     l_mean = float(roi[:, :, 0].mean())
     a_mean = float(roi[:, :, 1].mean())
+    b_star_to_a_star_ratio = b_star_mean / (a_mean + 1e-9)
 
     jaundice_flag = b_star_mean > JAUNDICE_THRESHOLD
 
@@ -130,6 +131,7 @@ def extract_jaundice_features(img_bgr: np.ndarray,
         'b_star_std': b_star_std,
         'l_mean': l_mean,
         'a_mean': a_mean,
+        'b_star_to_a_star_ratio': b_star_to_a_star_ratio,
         'jaundice_flag': jaundice_flag,
         'calibrated': calibrated,
         'annotated_img': annotated,
