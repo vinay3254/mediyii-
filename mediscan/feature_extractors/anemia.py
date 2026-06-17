@@ -18,7 +18,7 @@ Calibration: Same white-card approach as jaundice.py — mandatory for accuracy.
 import cv2
 import numpy as np
 
-FEATURE_NAMES = ['l_mean', 'a_mean', 'b_mean', 'pallor_index', 'redness_ratio']
+FEATURE_NAMES = ['l_mean', 'a_mean', 'b_mean', 'pallor_index', 'redness_ratio', 'redness_std']
 PALLOR_THRESHOLD = 6.5   # pallor_index above this → flag possible anaemia
 
 
@@ -90,6 +90,12 @@ def extract_anemia_features(img_bgr: np.ndarray,
     # CLINICAL NOTE: Lower redness_ratio = less haemoglobin saturation visible.
     redness_ratio = r_mean / (g_mean + 1e-9)
 
+    # Compute standard deviation of pixel-wise red-to-green ratio to represent vascular heterogeneity
+    pixel_r = roi_bgr[:, :, 2].astype(float)
+    pixel_g = roi_bgr[:, :, 1].astype(float)
+    redness_map = pixel_r / (pixel_g + 1e-9)
+    redness_std = float(redness_map.std())
+
     anemia_flag = pallor_index > PALLOR_THRESHOLD
 
     # ── Annotated image ──────────────────────────────────────────────────────
@@ -108,6 +114,7 @@ def extract_anemia_features(img_bgr: np.ndarray,
         'b_mean': b_mean,
         'pallor_index': pallor_index,
         'redness_ratio': redness_ratio,
+        'redness_std': redness_std,
         'anemia_flag': anemia_flag,
         'calibrated': calibrated,
         'annotated_img': annotated,

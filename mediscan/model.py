@@ -66,7 +66,7 @@ TOOL_CONFIG = {
     },
     'anemia': {
         'feature_names': [
-            'l_mean', 'a_mean', 'b_mean', 'pallor_index', 'redness_ratio'
+            'l_mean', 'a_mean', 'b_mean', 'pallor_index', 'redness_ratio', 'redness_std'
         ],
         'label_map': {0: 'normal', 1: 'anemic'},
         'extractor_module': 'feature_extractors.anemia',

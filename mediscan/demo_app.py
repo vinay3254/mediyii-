@@ -353,11 +353,12 @@ elif selected.startswith("4."):
                     else:
                         st.success(f"✅ Normal — Pallor Index={res['pallor_index']:.2f}")
                     st.image(bgr_to_rgb(res['annotated_img']), caption="Annotated ROI", use_column_width=True)
-                    c1,c2,c3,c4 = st.columns(4)
+                    c1,c2,c3,c4,c5 = st.columns(5)
                     c1.metric("Pallor Index", f"{res['pallor_index']:.2f}")
                     c2.metric("L* (lightness)", f"{res['l_mean']:.1f}")
                     c3.metric("a* (redness)", f"{res['a_mean']:.1f}")
                     c4.metric("Redness Ratio", f"{res['redness_ratio']:.2f}")
+                    c5.metric("Redness Std", f"{res['redness_std']:.2f}")
                     with st.expander("ℹ️ Clinical Basis"):
                         st.markdown("""
 **Pallor Index = L* / a***
