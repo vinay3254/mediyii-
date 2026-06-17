@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MediScan AI — Medical Computer Vision Platform</title>
+  <meta name="description" content="13 explainable medical computer vision diagnostic tools — melanoma classifier, diabetic retinopathy, heart rate monitor, tremor analysis, and more. Built with OpenCV + scikit-learn architecture." />
+  <meta name="keywords" content="medical AI, computer vision, melanoma, diabetic retinopathy, heart rate, PPG, tremor, gait analysis" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ================================================================ -->
+<!--  HEADER                                                           -->
+<!-- ================================================================ -->
+<header class="site-header">
+  <div class="header-logo">
+    <div class="logo-icon">🏥</div>
+    <div>
+      <h1>MediScan AI</h1>
+      <div class="subtitle">Medical Computer Vision Platform</div>
+    </div>
+  </div>
+  <div class="header-stats">
+    <div class="stat-badge">
+      <span class="num" data-suffix="">13</span>
+      <div class="label">Tools</div>
+    </div>
+    <div class="stat-badge">
+      <span class="num" data-suffix="">4</span>
+      <div class="label">Categories</div>
+    </div>
+    <div class="stat-badge">
+      <span class="num" data-suffix="">0</span>
+      <div class="label">GPU Required</div>
+    </div>
+    <div class="stat-badge">
+      <span class="num" data-suffix="%">100</span>
+      <div class="label">Explainable</div>
+    </div>
+  </div>
+</header>
+
+<!-- ================================================================ -->
+<!--  HERO                                                             -->
+<!-- ================================================================ -->
+<section class="hero">
+  <div class="hero-badge">
+    <span class="dot"></span>
+    Classical CV + Interpretable ML — No GPU Required
+  </div>
+  <h2>
+    <span class="gradient-text">Medical Diagnostics</span><br>
+    Powered by Computer Vision
+  </h2>
+  <p>
+    13 explainable diagnostic tools built on classical image processing features fed into
+    decision trees and logistic regression — fast to train, easy to explain, demo-ready.
+    Mirrors real clinical criteria (ABCDE, rPPG, EAR, symmetry index).
+  </p>
+  <div class="hero-pills">
+    <span class="pill pill-blue">OpenCV Features</span>
+    <span class="pill pill-purple">scikit-learn ML</span>
+    <span class="pill pill-green">Live Webcam</span>
+    <span class="pill pill-pink">MediaPipe Pose</span>
+    <span class="pill pill-amber">ABCDE Melanoma</span>
+    <span class="pill pill-teal">rPPG Heart Rate</span>
+    <span class="pill pill-blue">Blob Detection</span>
+    <span class="pill pill-purple">FFT Tremor</span>
+    <span class="pill pill-green">LAB Color Space</span>
+    <span class="pill pill-pink">YOLO Instruments</span>
+    <span class="pill pill-amber">GLCM Texture</span>
+    <span class="pill pill-teal">EAR Drowsiness</span>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!--  CATEGORY NAVIGATION                                              -->
+<!-- ================================================================ -->
+<nav class="cat-nav" aria-label="Tool categories">
+  <button class="cat-btn all active" data-cat="all" id="cat-all">
+    <div class="cat-icon">🔭</div>
+    All Tools
+    <span class="count">13</span>
+  </button>
+  <button class="cat-btn cat-screening" data-cat="screening" id="cat-screening">
+    <div class="cat-icon">🩺</div>
+    Screening & Diagnostics
+    <span class="count">4</span>
+  </button>
+  <button class="cat-btn cat-vitals" data-cat="vitals" id="cat-vitals">
+    <div class="cat-icon">💓</div>
+    Vitals & Monitoring
+    <span class="count">3</span>
+  </button>
+  <button class="cat-btn cat-movement" data-cat="movement" id="cat-movement">
+    <div class="cat-icon">🦾</div>
+    Movement & Rehab
+    <span class="count">3</span>
+  </button>
+  <button class="cat-btn cat-hospital" data-cat="hospital" id="cat-hospital">
+    <div class="cat-icon">🏥</div>
+    Hospital Workflow
+    <span class="count">3</span>
+  </button>
+</nav>
+
+<!-- ================================================================ -->
+<!--  MAIN CONTENT                                                     -->
+<!-- ================================================================ -->
+<main class="main-content">
+
+  <!-- ============================================================= -->
+  <!--  CATEGORY 1: SCREENING & DIAGNOSTICS                          -->
+  <!-- ============================================================= -->
+  <div class="section-wrapper" data-section="screening">
+    <div class="section-header">
+      <div class="section-line"></div>
+      <span class="section-label">🩺 Screening &amp; Diagnostic Aids</span>
+      <div class="section-line"></div>
+    </div>
+    <div class="tools-grid">
+
+      <!-- TOOL 1: Melanoma Classifier -->
+      <article class="tool-card screening" id="tool-melanoma" data-category="screening">
+        <div class="tool-card-header">
+          <div class="tool-icon-wrap">
+            <div class="tool-icon screening">🔬</div>
+            <span class="tool-number">1</span>
+          </div>
+          <div class="tool-meta">
+            <h3>Skin Lesion Melanoma Classifier</h3>
+            <p>Extracts ABCDE clinical features (asymmetry, border, color, diameter, texture) using contour analysis and GLCM. Feeds into a Decision Tree — mirrors dermatologist criteria.</p>
+            <div class="tool-tags">
+              <span class="tag tag-cv">OpenCV Contours</span>
+              <span class="tag tag-ml">Decision Tree</span>
+              <span class="tag tag-research">ISIC Dataset</span>
+              <span class="tag tag-demo">ABCDE Features</span>
+            </div>
+          </div>
+        </div>
+        <div class="tool-body">
+          <div class="upload-zone" id="upload-melanoma">
+            <input type="file" accept="image/*" id="file-melanoma" onchange="handleFileUpload(this,'tool-melanoma')" />
+            <div class="upload-icon">📸</div>
+            <div class="upload-text">Drop mole photo or click to upload</div>
+            <div class="upload-hint">JPG, PNG — or click Analyze for demo</div>
+          </div>
+          <div class="preview-container" style="display:flex;gap:8px;">
+            <canvas class="analysis-canvas" style="flex:1;border-radius:8px;"></canvas>
+          </div>
+          <div class="info-callout">
+            <span class="info-icon">💡</span>
+            <span><strong>ABCDE Pipeline:</strong> Otsu segmentation → contour asymmetry → perimeter²/area → LAB color std → GLCM contrast/homogeneity → Decision Tree (max_depth=5)</span>
+          </div>
+          <button class="btn-analyze screening" onclick="analyzeLeison('tool-melanoma')">🔬 Analyze Lesion</button>
+
+          <div id="tool-melanoma-results" class="results-panel">
+            <div class="risk-display">
+              <span class="risk-badge low">Low</span>
+              <div class="risk-meter"><div class="risk-fill low" style="width:5%"></div></div>
+            </div>
+            <div class="feature-grid">
+              <div class="feature-item">
+                <span class="feature-label">Asymmetry</span>
+                <span class="feature-value" data-feature="asymmetry">—</span>
+                <div class="feature-bar"><div class="feature-bar-fill" data-bar="asymmetry" style="width:0%"></div></div>
+              </div>
+              <div class="feature-item">
+                <span class="feature-label">Border Score</span>
+                <span class="feature-value" data-feature="border">—</span>
+                <div class="feature-bar"><div class="feature-bar-fill" data-bar="border" style="width:0%"></div></div>
+              </div>
+              <div class="feature-item">
+                <span class="feature-label">Color Std (L*)</span>
+                <span class="feature-value" data-feature="colorL">—</span>
+                <div class="feature-bar"><div class="feature-bar-fill" data-bar="colorL" style="width:0%"></div></div>
+              </div>
+              <div class="feature-item">
+                <span class="feature-label">Color Std (a*)</span>
+                <span class="feature-value" data-feature="colorA">—</span>
+                <div class="feature-bar"><div class="feature-bar-fill" data-bar="colorA" style="width:0%"></div></div>
+              </div>
+              <div class="feature-item">
+                <span class="feature-label">Diameter (px)</span>
+                <span class="feature-value" data-feature="diameter">—</span>
+                <div class="feature-bar"><div class="feature-bar-fill" data-bar="diameter" style="width:0%"></div></div>
+              </div>
+              <div class="feature-item">
+                <span class="feature-label">GLCM Contrast</span>
+                <span class="feature-value" data-feature="contrast">—</span>
+                <div class="feature-bar"><div class="feature-bar-fill" data-bar="contrast" style="width:0%"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="explain-panel">
+          <div class="explain-toggle" onclick="toggleExplain(this)">
+            🌳 Decision Tree Rules (sklearn export_text)
+            <span class="arrow">▼</span>
+          </div>
+          <div class="explain-content">
+            <div class="decision-tree" id="tool-melanoma-tree">Click "Analyze" to see the decision tree path…</div>
+            <div class="importance-chart" id="tool-melanoma-importance"></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- TOOL 2: Diabetic Retinopathy -->
+      <article class="tool-card screening" id="tool-dr" data-category="screening">
+        <div class="tool-card-header">
+          <div class="tool-icon-wrap">
+            <div class="tool-icon screening">👁</div>
+            <span class="tool-number">2</span>
+          </div>
+          <div class="tool-meta">
+            <h3>Diabetic Retinopathy Detector</h3>
+            <p>Processes retinal fundus images using CLAHE enhancement, morphological black-hat transform, and SimpleBlobDetector to flag microaneurysms and hemorrhages.</p>
+            <div class="tool-tags">
+              <span class="tag tag-cv">Blob Detection</span>
+              <span class="tag tag-cv">CLAHE</span>
+              <span class="tag tag-ml">DR Grading 0–4</span>
+              <span class="tag tag-research">DRIVE / Kaggle DR</span>
+            </div>
+          </div>
+        </div>
+        <div class="tool-body">
+          <div class="upload-zone">
+            <input type="file" accept="image/*" onchange="handleFileUpload(this,'tool-dr')" />
+            <div class="upload-icon">🫀</div>
+            <div class="upload-text">Drop retinal fundus image or click</div>
+            <div class="upload-hint">Or click Analyze for simulated fundus</div>
+          </div>
+          <div class="preview-container">
+            <canvas class="analysis-canvas" style="width:100%;height:100%;border-radius:8px;"></canvas>
+          </div>
+          <div class="info-callout">
+            <span class="info-icon">💡</span>
+            <span><strong>Pipeline:</strong> Green channel → CLAHE → Black-hat morphology → SimpleBlobDetector (area 5–200px, circularity ≥0.5) → grade by count (0,5,15,30 thresholds)</span>
+          </div>
+          <button class="btn-analyze screening" onclick="analyzeDR('tool-dr')">👁 Detect Lesions</button>
+
+          <div id="tool-dr-results" class="results-panel">
+            <div class="risk-display">
+              <span class="risk-badge low">Low</span>
+              <div class="risk-meter"><div class="risk-fill low" style="width:5%"></div></div>
+            </div>
+            <div class="feature-grid">
+              <div class="feature-item">
+                <span class="feature-label">Microaneurysms</span>
+                <span class="feature-value" data-feature="ma">—</span>
+              </div>
+              <div class="feature-item">
+                <span class="feature-label">Hemorrhages</span>
+                <span class="feature-value" data-feature="he">—</span>
+              </div>
+              <div class="feature-item">
+                <span class="feature-label">DR Grade</span>
+                <span class="feature-value" data-feature="grade">—</span>
+              </div>
+              <div class="feature-item">
+                <span class="feature-label">Grade Label</span>
+                <span class="feature-value" data-grade-label style="font-size:0.8rem">—</span>
+              </div>
+            </div>
+            <div style="text-align:center;margin-top:12px">
+              <div class="severity-ring" data-grade style="display:inline-flex">—</div>
+            </div>
+          </div>
+        </div>
+        <div class="explain-panel">
+          <div class="explain-toggle" onclick="toggleExplain(this)">
+            📊 Grading Scale & Detection Logic
+            <span class="arrow">▼</span>
+          </div>
+          <div class="explain-content">
+            <div class="decision-tree">
+<span class="rule-key">DR Grading (blob count thresholds):</span>
+<span class="rule-val">Grade 0</span> — 0 microaneurysms → <span class="rule-leaf">No DR</span>
+<span class="rule-val">Grade 1</span> — 1–4 MA → <span class="rule-leaf">Mild NPDR</span>
+<span class="rule-val">Grade 2</span> — 5–14 MA → <span class="rule-leaf">Moderate NPDR</span>
+<span class="rule-val">Grade 3</span> — 15–29 MA → <span class="rule-leaf">Severe NPDR</span>
+<span class="rule-val">Grade 4</span> — ≥30 MA → <span class="rule-leaf">Proliferative DR</span>
+
+<span class="rule-key">Detection params:</span>
+minArea=5, maxArea=200, minCircularity=0.5
+Channel: Green (best vessel contrast)
+Enhancement: CLAHE clipLimit=2.0, tile=(8×8)</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- TOOL 3: Jaundice Screening -->
+      <article class="tool-card screening" id="tool-jaundice" data-category="screening">
+        <div class="tool-card-header">
+          <div class="tool-icon-wrap">
+            <div class="tool-icon screening">🟡</div>
+            <span class="tool-number">3</span>
+          </div>
+          <div class="tool-meta">
+            <h3>Jaundice Screening Tool</h3>
+            <p>Analyzes skin or sclera (eye-white) color in LAB space. Elevated b* channel indicates jaundice. Based on BiliCam (UW 2015) — used in real neonatal screening apps.</p>
+            <div class="tool-tags">
+              <span class="tag tag-cv">LAB Color Space</span>
+              <span class="tag tag-research">BiliCam Research</span>
+              <span class="tag tag-demo">b* ≥ 145 → Flag</span>
+            </div>
+          </div>
+        </div>
+        <div class="tool-body">
+          <div class="upload-zone">
+            <input type="file" accept="image/*" onchange="handleFileUpload(this,'tool-jaundice')" />
+            <div class="upload-icon">👁</div>
+            <div class="upload-text">Upload sclera / skin photo</div>
+            <div class="upload-hint">Include a white reference patch for accuracy</div>
+          </div>
+          <div class="preview-container">
+            <canvas class="analysis-canvas" style="width:100%;height:100%;border-radius:8px;"></canvas>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <label style="font-size:0.75rem;color:var(--text-muted);font-weight:600;">Scenario:</label>
+            <select data-scenario style="flex:1;background:rgba(0,0,0,0.4);border:1px solid var(--glass-border);border-radius:6px;padding:6px 10px;color:var(--text-primary);font-size:0.8rem;font-family:var(--font-main)">
+              <option value="normal">Normal (b* ~120–138)</option>
+              <option value="borderline">Borderline (b* ~135–152)</option>
+              <option value="jaundiced">Jaundiced (b* ~150–185)</option>
+            </select>
+          </div>
+          <button class="btn-analyze screening" onclick="analyzeJaundice('tool-jaundice')">🟡 Analyze Color</button>
+
+          <div id="tool-jaundice-results" class="results-panel">
+            <div class="risk-display">
+              <span class="risk-badge low">Low</span>
+              <div class="risk-meter"><div class="risk-fill low" style="width:5%"></div></div>
+            </div>
+            <div class="feature-grid">
+              <div class="feature-item">
+                <span class="feature-label">LAB b* Mean</span>
+                <span class="feature-value" data-feature="bstar">—</span>
+              </div>
+              <div class="feature-item">
+                <span class="feature-label">Flag Threshold</span>
+                <span class="feature-value" data-feature="thresh">145.0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="explain-panel">
+          <div class="explain-toggle" onclick="toggleExplain(this)">
+            🧪 LAB Color Calibration Logic
+            <span class="arrow">▼</span>
+          </div>
+          <div class="explain-content">
+            <div class="decision-tree">
+<span class="rule-key">Jaundice manifests as elevated b* (yellow axis) in CIELAB:</span>
+img → BGR→LAB → extract b* channel
+If white_ref_patch provided:
+  lab[:,:,0] += (128 - ref_mean[0])  <span class="rule-leaf"># normalize L</span>
+  lab[:,:,2] += (128 - ref_mean[2])  <span class="rule-leaf"># normalize b*</span>
+
+ROI b*_mean → <span class="rule-val">b* > 145</span>: <span class="rule-leaf">FLAG JAUNDICE</span>
+             → <span class="rule-val">b* ≤ 145</span>: <span class="rule-leaf">NORMAL</span>
+
+<span class="rule-key">Research basis:</span> BiliCam (2015), SmartPhone-based
+neonatal jaundice screening (PLOS ONE, Ann. Int. Med.)</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- TOOL 4: Anemia Detector -->
+      <article class="tool-card screening" id="tool-anemia" data-category="screening">
+        <div class="tool-card-header">
+          <div class="tool-icon-wrap">
+            <div class="tool-icon screening">🩸</div>
+            <span class="tool-number">4</span>
+          </div>
+          <div class="tool-meta">
+            <h3>Anemia Detector (Conjunctival Pallor)</h3>
+            <p>Analyzes the inner eyelid (conjunctiva) color from close-up photo. High lightness + low a* red channel = pallor index → anemia. Published in PLOS ONE 2016.</p>
+            <div class="tool-tags">
+              <span class="tag tag-cv">LAB Pallor Index</span>
+              <span class="tag tag-research">PLOS ONE 2016</span>
+              <span class="tag tag-demo">Calibration-based</span>
+            </div>
+          </div>
+        </div>
+        <div class="tool-body">
+          <div class="upload-zone">
+            <input type="file" accept="image/*" onchange="handleFileUpload(this,'tool-anemia')" />
+            <div class="upload-icon">🔴</div>
+            <div class="upload-text">Upload close-up inner eyelid photo</div>
+            <div class="upload-hint">Lower eyelid pulled down, good lighting</div>
+          </div>
+          <div class="preview-container">
+            <canvas class="analysis-canvas" style="width:100%;height:100%;border-radius:8px;"></canvas>
+          </div>
+          <div class="info-callout">
+            <span class="info-icon">💡</span>
+            <span><strong>Pallor Index</strong> = L* / (a* + ε). High L* (bright) + Low a* (less red) = pale conjunctiva → likely anemia (Hb &lt;11 g/dL threshold)</span>
+          </div>
+          <button class="btn-analyze screening" onclick="analyzeAnemia('tool-anemia')">🩸 Measure Pallor</button>
+
+          <div id="tool-anemia-results" class="results-panel">
+            <div class="risk-display">
+              <span class="risk-badge low">Low</span>
+              <div class="risk-meter"><div class="risk-fill low" style="width:5%"></div></div>
+            </div>
+            <div class="feature-grid">
+              <div class="feature-item">
+                <span class="feature-label">Pallor Index</span>
+                <span class="feature-value" data-feature="pallor">—</span>
+              </div>
+              <div class="feature-item">
+                <span class="feature-label">L* Mean</span>
+                <span class="feature-value" data-feature="lmean">—</span>
+              </div>
+              <div class="feature-item">
+                <span class="feature-label">a* Mean</span>
+                <span class="feature-value" data-feature="amean">—</span>
+              </div>
+              <div class="feature-item">
+                <span class="feature-label">Threshold</span>
+                <span class="feature-value">6.50</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="explain-panel">
+          <div class="explain-toggle" onclick="toggleExplain(this)">
+            🔬 Feature Extraction Details
+            <span class="arrow">▼</span>
+          </div>
+          <div class="explain-content">
+            <div class="decision-tree">
+<span class="rule-key">conjunctiva_roi → LAB conversion:</span>
+l_mean  = roi[:,:,0].mean()   <span class="rule-leaf"># Lightness</span>
+a_mean  = roi[:,:,1].mean()   <span class="rule-leaf"># Red-Green axis</span>
+
+pallor_index = l_mean / (a_mean + 1e-9)
+
+<span class="rule-val">pallor > 6.5</span> → <span class="rule-leaf">POSSIBLE ANEMIA</span>
+<span class="rule-val">pallor 5-6.5</span> → <span class="rule-leaf">BORDERLINE</span>
+<span class="rule-val">pallor < 5</span>   → <span class="rule-leaf">NORMAL</span>
+
+<span class="rule-key">MediaPipe Face Mesh</span> can auto-detect
+conjunctiva landmark indices for ROI extraction.</div>
+          </div>
+        </div>
+      </article>
+
+    </div><!-- /tools-grid screening -->
+  </div><!-- /section-wrapper screening -->
+
+  <!-- ============================================================= -->
+  <!--  CATEGORY 2: VITALS & MONITORING                              -->
+  <!-- ============================================================= -->
+  <div class="section-wrapper" data-section="vitals">
+    <div class="section-header">
+      <div class="section-line"></div>
+      <span class="section-label">💓 Vitals &amp; Monitoring</span>
+      <div class="section-line"></div>
+    </div>
+    <div class="tools-grid">
+
+      <!-- TOOL 5: PPG Heart Rate -->
+      <article class="tool-card vitals webcam-card" id="tool-ppg" data-category="vitals">
+        <div class="tool-card-header">
+          <div class="tool-icon-wrap">
+            <div class="tool-icon vitals">❤️</div>
+            <span class="tool-number">5</span>
+          </div>
+          <div class="tool-meta">
+            <h3>Remote PPG Heart Rate Monitor</h3>
+            <p>Detects subtle green-channel color changes in facial skin from webcam (~0.5–1% variation per heartbeat). Bandpass filters 0.7–3 Hz, then FFT for BPM.</p>
+            <div class="tool-tags">
+              <span class="tag tag-live">Live Webcam</span>
+              <span class="tag tag-cv">rPPG</span>
+              <span class="tag tag-cv">FFT Analysis</span>
+              <span class="tag tag-demo">Judges see their BPM</span>
+            </div>
+          </div>
+        </div>
+        <div class="tool-body">
+          <div class="preview-container" style="aspect-ratio:16/9">
+            <video autoplay muted playsinline style="width:100%;height:100%;object-fit:cover;border-radius:8px;" id="video-ppg"></video>
+            <div class="preview-overlay" id="ppg-overlay">
+              Press Start to activate webcam
+            </div>
+          </div>
+          <div class="vitals-display">
+            <div class="vital-metric">
+              <div class="vital-value" data-vital="bpm">--</div>
+              <div class="vital-unit">BPM</div>
+              <div class="vital-label">Heart Rate</div>
+            </div>
+            <div class="vital-divider"></div>
+            <div class="vital-metric">
+              <div class="vital-value" data-vital="spo2" style="font-size:2rem;background:linear-gradient(135deg,#6366f1,#3d8bff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">--</div>
+              <div class="vital-unit">SpO₂ %</div>
+              <div class="vital-label">Estimated Oxygen</div>
+            </div>
+          </div>
+          <div class="chart-container">
+            <canvas class="chart-canvas" id="tool-ppg-chart"></canvas>
+          </div>
+          <div class="info-callout">
+            <span class="info-icon">💡</span>
+            <span>Forehead ROI → green channel mean → bandpass(0.7–3Hz) → FFT → dominant freq × 60 = BPM. Best in stable lighting (avoid 50/60Hz flicker).</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div class="status-dot idle" id="ppg-dot"></div>
+            <span style="font-size:0.75rem;color:var(--text-muted)">Signal quality</span>
+            <span class="live-badge" style="margin-left:auto">● LIVE</span>
+          </div>
+          <button class="btn-analyze vitals" onclick="startRPPG('tool-ppg')">❤️ Start Live Monitor</button>
+        </div>
+        <div class="explain-panel">
+          <div class="explain-toggle" onclick="toggleExplain(this)">
+            📈 rPPG Signal Processing Pipeline
+            <span class="arrow">▼</span>
+          </div>
+          <div class="explain-content">
+            <div class="decision-tree">
+<span class="rule-key">Signal extraction (per frame):</span>
+forehead = frame[y:y+fh//4, x:x+fw]
+green_signal.append(forehead[:,:,1].mean())
+
+<span class="rule-key">Butterworth bandpass filter (4th order):</span>
+b, a = butter(4, [0.7, 3.0], btype='band', fs=fps)
+filtered = filtfilt(b, a, signal)
+
+<span class="rule-key">Frequency domain BPM:</span>
+fft = np.abs(np.fft.rfft(filtered))
+dominant_freq = freqs[mask][argmax(fft[mask])]
+bpm = dominant_freq × 60
+
+<span class="rule-leaf">Normal BPM range: 42–180 (0.7–3.0 Hz)</span></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- TOOL 6: Respiratory Rate -->
+      <article class="tool-card vitals webcam-card" id="tool-resp" data-category="vitals">
+        <div class="tool-card-header">
+          <div class="tool-icon-wrap">
+            <div class="tool-icon vitals">🫁</div>
+            <span class="tool-number">6</span>
+          </div>
+          <div class="tool-meta">
+            <h3>Respiratory Rate Tracker</h3>
+            <p>Measures chest/shoulder vertical movement frequency via MediaPipe Pose landmarks. Bandpass 0.1–0.8 Hz (6–48 breaths/min), counts peaks with minimum 1.5s spacing.</p>
+            <div class="tool-tags">
+              <span class="tag tag-live">Live Video</span>
+              <span class="tag tag-cv">MediaPipe Pose</span>
+              <span class="tag tag-cv">Peak Detection</span>
+            </div>
+          </div>
+        </div>
+        <div class="tool-body">
+          <div class="vitals-display">
+            <div class="vital-metric">
+              <div class="vital-value" data-vital="rr" style="background:linear-gradient(135deg,var(--accent-teal),var(--accent-green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">--</div>
+              <div class="vital-unit">breaths/min</div>
+              <div class="vital-label">Respiratory Rate</div>
+            </div>
+            <div class="vital-divider"></div>
+            <div class="vital-metric">
+              <div class="vital-value" style="font-size:1.8rem;color:var(--text-muted)">Normal</div>
+              <div class="vital-unit">12–20 bpm</div>
+              <div class="vital-label">Reference Range</div>
+            </div>
+          </div>
+          <div class="chart-container">
+            <canvas class="chart-canvas" id="tool-resp-chart"></canvas>
+          </div>
+          <div class="info-callout">
+            <span class="info-icon">💡</span>
+            <span>Tracks lm[11].y (left shoulder) + lm[12].y (right shoulder). Butterworth bandpass 0.1–0.8 Hz. Peak distance: min 45 frames (1.5s @ 30fps)</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div class="status-dot idle"></div>
+            <span style="font-size:0.75rem;color:var(--text-muted)">Tracking shoulder landmarks</span>
+          </div>
+          <button class="btn-analyze vitals" onclick="startRespRate('tool-resp')">🫁 Start Tracking</button>
+        </div>
+        <div class="explain-panel">
+          <div class="explain-toggle" onclick="toggleExplain(this)">
+            🌊 Signal Processing Details
+            <span class="arrow">▼</span>
+          </div>
+          <div class="explain-content">
+            <div class="decision-tree">
+<span class="rule-key">Shoulder tracking:</span>
+y_avg = (lm[11].y + lm[12].y) / 2
+signal = normalize(shoulder_y_series)
+
+<span class="rule-key">Filter & peak detection:</span>
+b, a = butter(4, [0.1, 0.8], btype='band', fs=fps)
+filtered = filtfilt(b, a, signal)
+peaks, _ = find_peaks(filtered, distance=fps*1.5)
+
+<span class="rule-key">Respiratory rate:</span>
+RR = len(peaks) / duration_min
+<span class="rule-leaf">Normal adult: 12–20 breaths/min</span></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- TOOL 7: Drowsiness Monitor -->
+      <article class="tool-card vitals webcam-card" id="tool-drowsy" data-category="vitals">
+        <div class="tool-card-header">
+          <div class="tool-icon-wrap">
+            <div class="tool-icon vitals">😴</div>
+            <span class="tool-number">7</span>
+          </div>
+          <div class="tool-meta">
+            <h3>Drowsiness / Fatigue Monitor</h3>
+            <p>Tracks Eye Aspect Ratio (EAR) using MediaPipe Face Mesh 468 landmarks. EAR &lt; 0.25 for 20+ consecutive frames triggers alert. PERCLOS metric for cumulative fatigue.</p>
+            <div class="tool-tags">
+              <span class="tag tag-live">Live Webcam</span>
+              <span class="tag tag-cv">EAR + PERCLOS</span>
+              <span class="tag tag-cv">Face Mesh</span>
+              <span class="tag tag-demo">ICU / Shift Workers</span>
+            </div>
+          </div>
+        </div>
+        <div class="tool-body">
+          <div class="vitals-display" style="padding:16px">
+            <div class="vital-metric">
+              <div class="vital-value" data-vital="ear" style="font-size:2rem;background:linear-gradient(135deg,#6366f1,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">--</div>
+              <div class="vital-unit">EAR Score</div>
+              <div class="vital-label">Eye Aspect Ratio</div>
+            </div>
+            <div class="vital-divider"></div>
+            <div class="vital-metric">
+              <div class="vital-value" data-vital="perclos" style="font-size:1.8rem;background:linear-gradient(135deg,#f59e0b,#ef4444);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">0.0%</div>
+              <div class="vital-unit">PERCLOS</div>
+              <div class="vital-label">% Eyes Closed</div>
+            </div>
+          </div>
+          <div class="chart-container">
+            <canvas class="chart-canvas" id="tool-drowsy-chart"></canvas>
+          </div>
+          <div style="text-align:center;padding:8px;background:rgba(0,0,0,0.3);border-radius:8px;border:1px solid var(--glass-border)">
+            <span data-drowsy-alert style="font-size:0.85rem;font-weight:700;color:var(--accent-green)">✓ Alert — monitoring</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div class="status-dot idle"></div>
+            <span style="font-size:0.75rem;color:var(--text-muted)">EAR threshold: 0.25 | Alert: 20 frames</span>
+          </div>
+          <button class="btn-analyze vitals" onclick="startDrowsiness('tool-drowsy')">😴 Start Monitor</button>
+        </div>
+        <div class="explain-panel">
+          <div class="explain-toggle" onclick="toggleExplain(this)">
+            👁 EAR Formula &amp; Landmark Indices
+            <span class="arrow">▼</span>
+          </div>
+          <div class="explain-content">
+            <div class="decision-tree">
+<span class="rule-key">Eye Aspect Ratio (Soukupová & Čech 2016):</span>
+EAR = (|p2−p6| + |p3−p5|) / (2 × |p1−p4|)
+
+<span class="rule-key">MediaPipe indices:</span>
+LEFT_EYE  = [362, 385, 387, 263, 373, 380]
+RIGHT_EYE = [33,  160, 158, 133, 153, 144]
+
+<span class="rule-val">EAR < 0.25</span> for <span class="rule-val">≥ 20 frames</span>: <span class="rule-leaf">DROWSY ALERT</span>
+
+<span class="rule-key">PERCLOS:</span>
+% frames where EAR < 0.25 over rolling window
+<span class="rule-val">PERCLOS > 15%</span>: <span class="rule-leaf">FATIGUED</span></div>
+          </div>
+        </div>
+      </article>
+
+    </div><!-- /tools-grid vitals -->
+  </div><!-- /section-wrapper vitals -->
+
+  <!-- ============================================================= -->
+  <!--  CATEGORY 3: MOVEMENT & REHAB                                 -->
+  <!-- ============================================================= -->
+  <div class="section-wrapper" data-section="movement">
+    <div class="section-header">
+      <div class="section-line"></div>
+      <span class="section-label">🦾 Movement &amp; Rehabilitation</span>
+      <div class="section-line"></div>
+    </div>
+    <div class="tools-grid">
+
+      <!-- TOOL 8: ROM Tracker -->
+      <article class="tool-card movement" id="tool-rom" data-category="movement">
+        <div class="tool-card-header">
+          <div class="tool-icon-wrap">
+            <div class="tool-icon movement">🏋️</div>
+            <span class="tool-number">8</span>
+          </div>
+          <div class="tool-meta">
+            <h3>Physical Therapy Range-of-Motion Tracker</h3>
+            <p>Uses MediaPipe Pose to measure joint angles (shoulder, knee, elbow, hip). Compares measured vs target angles. Outputs completion score and visual skeleton.</p>
+            <div class="tool-tags">
+              <span class="tag tag-cv">MediaPipe Pose</span>
+              <span class="tag tag-demo">ROM Score %</span>
+              <span class="tag tag-research">PT Rehabilitation</span>
+            </div>
+          </div>
+        </div>
+        <div class="tool-body">
+          <div class="upload-zone">
+            <input type="file" accept="video/*,image/*" onchange="handleFileUpload(this,'tool-rom')" />
+            <div class="upload-icon">🎥</div>
+            <div class="upload-text">Upload exercise video or image</div>
+            <div class="upload-hint">Side-view of patient performing exercise</div>
+          </div>
+          <div class="preview-container">
+            <canvas class="analysis-canvas" style="width:100%;height:100%;border-radius:8px;"></canvas>
+          </div>
+          <div class="info-callout">
+            <span class="info-icon">💡</span>
+            <span><strong>Joint angle:</strong> cos⁻¹(v1·v2 / |v1||v2|) where v1=b→a, v2=b→c at joint b. Targets: shoulder 180°, knee 135°, elbow 180°, hip 90°</span>
+          </div>
+          <button class="btn-analyze movement" onclick="analyzeROM('tool-rom')">🦾 Analyze ROM</button>
+
+          <div id="tool-rom-results" class="results-panel">
+            <div class="risk-display">
+              <span class="risk-badge low">Good</span>
+              <div class="risk-meter"><div class="risk-fill low" style="width:5%"></div></div>
+            </div>
+            <div class="feature-grid">
+              <div class="feature-item">
+                <span class="feature-label">Shoulder Flexion</span>
+                <span class="feature-value" data-feature="shoulder">—</span>
+                <div class="feature-bar"><div class="feature-bar-fill" data-bar="shoulder" style="width:0%;background:linear-gradient(90deg,#10b981,#14b8a6)"></div></div>
+              </div>
+              <div class="feature-item">
+                <span class="feature-label">Knee Flexion</span>
+                <span class="feature-value" data-feature="knee">—</span>
+                <div class="feature-bar"><div class="feature-bar-fill" data-bar="knee" style="width:0%;background:linear-gradient(90deg,#10b981,#14b8a6)"></div></div>
+              </div>
+              <div class="feature-item">
+                <span class="feature-label">Elbow Extension</span>
+                <span class="feature-value" data-feature="elbow">—</span>
+                <div class="feature-bar"><div class="feature-bar-fill" data-bar="elbow" style="width:0%;background:linear-gradient(90deg,#10b981,#14b8a6)"></div></div>
+              </div>
+              <div class="feature-item">
+                <span class="feature-label">Hip Flexion</span>
+                <span class="feature-value" data-feature="hip">—</span>
+                <div class="feature-bar"><div class="feature-bar-fill" data-bar="hip" style="width:0%;background:linear-gradient(90deg,#10b981,#14b8a6)"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="explain-panel">
+          <div class="explain-toggle" onclick="toggleExplain(this)">
+            📐 Joint Angle Formula &amp; Target Reference
+            <span class="arrow">▼</span>
+          </div>
+          <div class="explain-content">
+            <div class="decision-tree">
+<span class="rule-key">joint_angle(a, b, c):</span>
+v1 = [a.x-b.x, a.y-b.y]
+v2 = [c.x-b.x, c.y-b.y]
+cos_θ = dot(v1,v2) / (|v1|×|v2|)
+angle = degrees(arccos(clip(cos_θ,-1,1)))
+
+<span class="rule-key">ROM Score:</span>
+score = min(100, measured/target × 100)
+
+<span class="rule-key">Target angles:</span>
+shoulder_flexion: <span class="rule-val">180°</span>
+knee_flexion:     <span class="rule-val">135°</span>
+elbow_extension:  <span class="rule-val">180°</span>
+hip_flexion:      <span class="rule-val">90°</span></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- TOOL 9: Tremor Analysis -->
+      <article class="tool-card movement" id="tool-tremor" data-category="movement">
+        <div class="tool-card-header">
+          <div class="tool-icon-wrap">
+            <div class="tool-icon movement">✋</div>
+            <span class="tool-number">9</span>
+          </div>
+          <div class="tool-meta">
+            <h3>Tremor Analysis — Parkinson's Screening</h3>
+            <p>Tracks hand keypoint (index fingertip) jitter over short video. FFT identifies dominant tremor frequency: 4–6 Hz = Parkinson's signature, 6–12 Hz = essential tremor.</p>
+            <div class="tool-tags">
+              <span class="tag tag-cv">MediaPipe Hands</span>
+              <span class="tag tag-cv">FFT Spectrum</span>
+              <span class="tag tag-research">4–6 Hz Parkinson</span>
+            </div>
+          </div>
+        </div>
+        <div class="tool-body">
+          <div class="upload-zone">
+            <input type="file" accept="video/*" onchange="handleFileUpload(this,'tool-tremor')" />
+            <div class="upload-icon">✋</div>
+            <div class="upload-text">Upload hand video (10–30 sec)</div>
+            <div class="upload-hint">Patient holds hand steady, palm facing camera</div>
+          </div>
+          <div class="preview-container">
+            <canvas class="analysis-canvas" style="width:100%;height:100%;border-radius:8px;"></canvas>
+          </div>
+          <div class="info-callout">
+            <span class="info-icon">💡</span>
+            <span>Index tip (landmark 8) X/Y tracked → FFT → dominant frequency + 4–6 Hz band power. Parkinsonian tremor ~4–6 Hz at rest, essential tremor ~6–12 Hz on action.</span>
+          </div>
+          <button class="btn-analyze movement" onclick="analyzeTremor('tool-tremor')">✋ Analyze Tremor</button>
+
+          <div id="tool-tremor-results" class="results-panel">
+            <div class="risk-display">
+              <span class="risk-badge low">Low</span>
+              <div class="risk-meter"><div class="risk-fill low" style="width:5%"></div></div>
+            </div>
+            <div class="feature-grid">
+              <div class="feature-item">
+                <span class="feature-label">Dominant Freq</span>
+                <span class="feature-value" data-feature="freq">—</span>
+              </div>
+              <div class="feature-item">
+                <span class="feature-label">Parkinson Band</span>
+                <span class="feature-value" data-feature="parkband">—</span>
+              </div>
+              <div class="feature-item">
+                <span class="feature-label">Jitter RMS</span>
+                <span class="feature-value" data-feature="jitter">—</span>
+              </div>
+              <div class="feature-item">
+                <span class="feature-label">Classification</span>
+                <span class="feature-value" style="font-size:0.75rem" id="tremor-class">—</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="explain-panel">
+          <div class="explain-toggle" onclick="toggleExplain(this)">
+            📊 FFT Tremor Classification Logic
+            <span class="arrow">▼</span>
+          </div>
+          <div class="explain-content">
+            <div class="decision-tree">
+<span class="rule-key">Hand landmark tracking:</span>
+index_tip_x.append(lm[8].x)
+index_tip_y.append(lm[8].y)
+
+<span class="rule-key">FFT per axis:</span>
+fft_mag = abs(rfft(signal - mean))
+freqs   = rfftfreq(len(signal), d=1/fps)
+dominant = freqs[argmax(fft_mag[1:])+1]
+
+<span class="rule-key">Band power:</span>
+power_4_6 = fft_mag[(f>=4)&(f<=6)].sum()
+power_6_12 = fft_mag[(f>=6)&(f<=12)].sum()
+
+<span class="rule-val">dominant in 4–6 Hz</span>: <span class="rule-leaf">Parkinsonian</span>
+<span class="rule-val">dominant in 6–12 Hz</span>: <span class="rule-leaf">Essential Tremor</span>
+<span class="rule-val">dominant > 12 Hz</span>:   <span class="rule-leaf">Physiological (normal)</span></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- TOOL 10: Gait Analysis -->
+      <article class="tool-card movement" id="tool-gait" data-category="movement">
+        <div class="tool-card-header">
+          <div class="tool-icon-wrap">
+            <div class="tool-icon movement">🚶</div>
+            <span class="tool-number">10</span>
+          </div>
+          <div class="tool-meta">
+            <h3>Gait Analysis — Symmetry Detector</h3>
+            <p>Tracks left/right knee vertical movement from side-view video. Computes symmetry index from amplitude difference. SI &gt; 10% = asymmetric gait, flagged for post-surgery recovery.</p>
+            <div class="tool-tags">
+              <span class="tag tag-cv">MediaPipe Pose</span>
+              <span class="tag tag-demo">Symmetry Index</span>
+              <span class="tag tag-research">Post-surgery Recovery</span>
+            </div>
+          </div>
+        </div>
+        <div class="tool-body">
+          <div class="upload-zone">
+            <input type="file" accept="video/*" onchange="handleFileUpload(this,'tool-gait')" />
+            <div class="upload-icon">🚶</div>
+            <div class="upload-text">Upload side-view walking video</div>
+            <div class="upload-hint">Patient walking straight in frame, 5–15 sec</div>
+          </div>
+          <div class="preview-container">
+            <canvas class="analysis-canvas" style="width:100%;height:100%;border-radius:8px;"></canvas>
+          </div>
+          <div class="info-callout">
+            <span class="info-icon">💡</span>
+            <span><strong>Symmetry Index:</strong> |L_amp − R_amp| / ((L_amp + R_amp) / 2) × 100. SI &lt; 10% = normal, SI &gt; 10% = asymmetric, SI &gt; 20% = significant impairment.</span>
+          </div>
+          <button class="btn-analyze movement" onclick="analyzeGait('tool-gait')">🚶 Analyze Gait</button>
+
+          <div id="tool-gait-results" class="results-panel">
+            <div class="risk-display">
+              <span class="risk-badge low">Low</span>
+              <div class="risk-meter"><div class="risk-fill low" style="width:5%"></div></div>
+            </div>
+            <div class="feature-grid">
+              <div class="feature-item">
+                <span class="feature-label">Symmetry Index</span>
+                <span class="feature-value" data-feature="symmetry">—</span>
+              </div>
+              <div class="feature-item">
+                <span class="feature-label">Cadence</span>
+                <span class="feature-value" data-feature="cadence">—</span>
+              </div>
+              <div class="feature-item">
+                <span class="feature-label">Step Length</span>
+                <span class="feature-value" data-feature="steplength">—</span>
+              </div>
+              <div class="feature-item">
+                <span class="feature-label">Flag Threshold</span>
+                <span class="feature-value">10%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="explain-panel">
+          <div class="explain-toggle" onclick="toggleExplain(this)">
+            📐 Symmetry Index Formula
+            <span class="arrow">▼</span>
+          </div>
+          <div class="explain-content">
+            <div class="decision-tree">
+<span class="rule-key">Knee landmark tracking:</span>
+left_knee_y.append(lm[25].y)   <span class="rule-leaf"># left knee</span>
+right_knee_y.append(lm[26].y)  <span class="rule-leaf"># right knee</span>
+
+<span class="rule-key">Amplitude:</span>
+L_amp = L.max() - L.min()
+R_amp = R.max() - R.min()
+
+<span class="rule-key">Symmetry Index (Robinson 1987):</span>
+SI = |L_amp−R_amp| / ((L_amp+R_amp)/2) × 100
+
+<span class="rule-val">SI < 10%</span>:  <span class="rule-leaf">NORMAL gait</span>
+<span class="rule-val">SI 10–20%</span>: <span class="rule-leaf">ASYMMETRIC — monitor</span>
+<span class="rule-val">SI > 20%</span>:  <span class="rule-leaf">SIGNIFICANT impairment</span></div>
+          </div>
+        </div>
+      </article>
+
+    </div><!-- /tools-grid movement -->
+  </div><!-- /section-wrapper movement -->
+
+  <!-- ============================================================= -->
+  <!--  CATEGORY 4: HOSPITAL WORKFLOW                                -->
+  <!-- ============================================================= -->
+  <div class="section-wrapper" data-section="hospital">
+    <div class="section-header">
+      <div class="section-line"></div>
+      <span class="section-label">🏥 Hospital Workflow</span>
+      <div class="section-line"></div>
+    </div>
+    <div class="tools-grid">
+
+      <!-- TOOL 11: Surgical Instrument Counter -->
+      <article class="tool-card hospital" id="tool-surgical" data-category="hospital">
+        <div class="tool-card-header">
+          <div class="tool-icon-wrap">
+            <div class="tool-icon hospital">⚕️</div>
+            <span class="tool-number">11</span>
+          </div>
+          <div class="tool-meta">
+            <h3>Surgical Sponge / Instrument Counter</h3>
+            <p>Tracks instruments in and out of surgical tray via YOLOv8n object detection. Addresses retained surgical items (RSI) — 1 in 5,500 operations. Real-time count mismatch alerts.</p>
+            <div class="tool-tags">
+              <span class="tag tag-cv">YOLOv8n</span>
+              <span class="tag tag-ml">Object Detection</span>
+              <span class="tag tag-demo">RSI Prevention</span>
+            </div>
+          </div>
+        </div>
+        <div class="tool-body">
+          <div class="upload-zone">
+            <input type="file" accept="image/*,video/*" onchange="handleFileUpload(this,'tool-surgical')" />
+            <div class="upload-icon">🔪</div>
+            <div class="upload-text">Upload surgical tray image</div>
+            <div class="upload-hint">Clear overhead photo of instrument tray</div>
+          </div>
+          <div class="preview-container">
+            <canvas class="analysis-canvas" style="width:100%;height:100%;border-radius:8px;"></canvas>
+          </div>
+          <div class="info-callout">
+            <span class="info-icon">⚠️</span>
+            <span><strong>RSI Risk:</strong> Retained surgical items occur in ~1 in 5,500–18,760 operations. Automated counting provides a safety net beyond manual counting protocols.</span>
+          </div>
+          <button class="btn-analyze hospital" onclick="analyzeSurgical('tool-surgical')">🔬 Scan Tray</button>
+
+          <div id="tool-surgical-results" class="results-panel">
+            <div class="risk-display">
+              <span class="risk-badge low">Clear</span>
+              <div class="risk-meter"><div class="risk-fill low" style="width:5%"></div></div>
+            </div>
+            <div class="importance-chart" data-inventory></div>
+          </div>
+        </div>
+        <div class="explain-panel">
+          <div class="explain-toggle" onclick="toggleExplain(this)">
+            🤖 Detection Architecture
+            <span class="arrow">▼</span>
+          </div>
+          <div class="explain-content">
+            <div class="decision-tree">
+<span class="rule-key">YOLOv8n inference:</span>
+model = YOLO('yolov8n.pt')
+results = model(tray_image)
+
+<span class="rule-key">Inventory tracking:</span>
+for box in results[0].boxes:
+  cls = model.names[int(box.cls)]
+  inventory[cls] += 1
+
+<span class="rule-key">Count verification:</span>
+if inventory != expected_count:
+  alert("⚠ MISMATCH")
+
+<span class="rule-leaf">Alt: SimpleBlobDetector for circular sponges
+(no trained model required for uniform shapes)</span></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- TOOL 12: Pill Identifier -->
+      <article class="tool-card hospital" id="tool-pill" data-category="hospital">
+        <div class="tool-card-header">
+          <div class="tool-icon-wrap">
+            <div class="tool-icon hospital">💊</div>
+            <span class="tool-number">12</span>
+          </div>
+          <div class="tool-meta">
+            <h3>Pill Identifier</h3>
+            <p>Matches photographed pill's shape (aspect ratio, circularity, convexity), color (k-means dominant), and imprint features against reference database using cosine similarity / KNN.</p>
+            <div class="tool-tags">
+              <span class="tag tag-cv">K-Means Color</span>
+              <span class="tag tag-ml">KNN Matching</span>
+              <span class="tag tag-demo">Med Safety</span>
+            </div>
+          </div>
+        </div>
+        <div class="tool-body">
+          <div class="upload-zone">
+            <input type="file" accept="image/*" onchange="handleFileUpload(this,'tool-pill')" />
+            <div class="upload-icon">💊</div>
+            <div class="upload-text">Upload pill photo (plain background)</div>
+            <div class="upload-hint">White background, good lighting, single pill</div>
+          </div>
+          <div class="preview-container">
+            <canvas class="analysis-canvas" style="width:100%;height:100%;border-radius:8px;"></canvas>
+          </div>
+          <div class="info-callout">
+            <span class="info-icon">💡</span>
+            <span>Otsu threshold → contour → aspect ratio + circularity + convexity hull ratio + 3-cluster k-means color → cosine distance to reference DB.</span>
+          </div>
+          <button class="btn-analyze hospital" onclick="analyzePill('tool-pill')">💊 Identify Pill</button>
+
+          <div id="tool-pill-results" class="results-panel">
+            <div class="risk-display">
+              <span class="risk-badge low">Matched</span>
+              <div class="risk-meter"><div class="risk-fill low" style="width:5%"></div></div>
+            </div>
+            <div class="feature-grid">
+              <div class="feature-item">
+                <span class="feature-label">Best Match</span>
+                <span class="feature-value" data-feature="match" style="font-size:0.75rem">—</span>
+              </div>
+              <div class="feature-item">
+                <span class="feature-label">Confidence</span>
+                <span class="feature-value" data-feature="confidence">—</span>
+              </div>
+              <div class="feature-item">
+                <span class="feature-label">Aspect Ratio</span>
+                <span class="feature-value" data-feature="ar">—</span>
+              </div>
+              <div class="feature-item">
+                <span class="feature-label">Circularity</span>
+                <span class="feature-value" data-feature="circ">—</span>
+              </div>
+            </div>
+            <div style="margin-top:10px">
+              <div class="feature-label" style="margin-bottom:6px">Top Matches (KNN)</div>
+              <div class="importance-chart" data-matches></div>
+            </div>
+          </div>
+        </div>
+        <div class="explain-panel">
+          <div class="explain-toggle" onclick="toggleExplain(this)">
+            🔬 Shape + Color Feature Extraction
+            <span class="arrow">▼</span>
+          </div>
+          <div class="explain-content">
+            <div class="decision-tree">
+<span class="rule-key">Shape features:</span>
+aspect_ratio = w / h
+circularity  = 4π·area / perimeter²
+convexity    = area / hull_area
+
+<span class="rule-key">Color (K-Means k=3):</span>
+_, labels, centers = cv2.kmeans(pixels, 3, ...)
+dominant = centers[argmax(bincount(labels))]
+
+<span class="rule-key">KNN matching (k=3):</span>
+dist = sqrt((ar−p.ar)² + (circ−p.circ)²×4)
+confidence = clip(1 − dist/2, 0, 1)
+sorted by dist → top-3 matches</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- TOOL 13: Blood Smear Cell Counter -->
+      <article class="tool-card hospital" id="tool-blood" data-category="hospital">
+        <div class="tool-card-header">
+          <div class="tool-icon-wrap">
+            <div class="tool-icon hospital">🔴</div>
+            <span class="tool-number">13</span>
+          </div>
+          <div class="tool-meta">
+            <h3>Blood Smear Cell Counter</h3>
+            <p>Segments and counts RBCs (pink/orange HSV range), WBCs (purple/blue stained nuclei), and platelets from microscope images via HSV masking and morphological contour filtering.</p>
+            <div class="tool-tags">
+              <span class="tag tag-cv">HSV Masking</span>
+              <span class="tag tag-cv">Contour Filter</span>
+              <span class="tag tag-research">BCCD Dataset</span>
+              <span class="tag tag-demo">Hematology</span>
+            </div>
+          </div>
+        </div>
+        <div class="tool-body">
+          <div class="upload-zone">
+            <input type="file" accept="image/*" onchange="handleFileUpload(this,'tool-blood')" />
+            <div class="upload-icon">🔬</div>
+            <div class="upload-text">Upload blood smear microscope image</div>
+            <div class="upload-hint">Giemsa-stained peripheral blood smear, 40–100× magnification</div>
+          </div>
+          <div class="preview-container">
+            <canvas class="analysis-canvas" style="width:100%;height:100%;border-radius:8px;"></canvas>
+          </div>
+          <div class="info-callout">
+            <span class="info-icon">💡</span>
+            <span><strong>Pipeline:</strong> HSV masking (RBC: H 0–20°, WBC: H 120–160°) → morphological open (5×5) → contour area filter (RBC: 200–5000px², WBC: 500–20000px²)</span>
+          </div>
+          <button class="btn-analyze hospital" onclick="analyzeBloodSmear('tool-blood')">🔴 Count Cells</button>
+
+          <div id="tool-blood-results" class="results-panel">
+            <div class="risk-display">
+              <span class="risk-badge low">Normal</span>
+              <div class="risk-meter"><div class="risk-fill low" style="width:5%"></div></div>
+            </div>
+            <div class="feature-grid">
+              <div class="feature-item">
+                <span class="feature-label">RBC Count</span>
+                <span class="feature-value" data-feature="rbc" style="color:#ef4444">—</span>
+              </div>
+              <div class="feature-item">
+                <span class="feature-label">WBC Count</span>
+                <span class="feature-value" data-feature="wbc" style="color:#6366f1">—</span>
+              </div>
+              <div class="feature-item">
+                <span class="feature-label">Platelet Count</span>
+                <span class="feature-value" data-feature="plt" style="color:#a855f7">—</span>
+              </div>
+              <div class="feature-item">
+                <span class="feature-label">RBC:WBC Ratio</span>
+                <span class="feature-value" data-feature="ratio">—</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="explain-panel">
+          <div class="explain-toggle" onclick="toggleExplain(this)">
+            🧫 HSV Color Segmentation Ranges
+            <span class="arrow">▼</span>
+          </div>
+          <div class="explain-content">
+            <div class="decision-tree">
+<span class="rule-key">RBC mask (pink/orange hue):</span>
+rbc_mask = inRange(hsv,
+  [0,50,50],   <span class="rule-leaf"># H=0 S≥50 V≥50</span>
+  [20,255,255]) <span class="rule-leaf"># H=20</span>
+
+<span class="rule-key">WBC mask (purple stained nuclei):</span>
+wbc_mask = inRange(hsv,
+  [120,50,50],  <span class="rule-leaf"># H=120</span>
+  [160,255,255]) <span class="rule-leaf"># H=160</span>
+
+<span class="rule-key">Cleanup & count:</span>
+kernel = ones((5,5))
+mask = morphologyEx(mask, MORPH_OPEN, kernel)
+contours = findContours(mask, RETR_EXTERNAL)
+cells = [c for c in contours
+         if 200 < contourArea(c) < 5000]  <span class="rule-leaf"># RBC</span></div>
+          </div>
+        </div>
+      </article>
+
+    </div><!-- /tools-grid hospital -->
+  </div><!-- /section-wrapper hospital -->
+
+</main>
+
+<!-- ================================================================ -->
+<!--  FOOTER                                                           -->
+<!-- ================================================================ -->
+<footer class="site-footer">
+  <p>
+    <strong>MediScan AI</strong> — 13 Medical Computer Vision Tools &nbsp;|&nbsp;
+    Architecture: <strong>Classical CV Features → Interpretable ML</strong> &nbsp;|&nbsp;
+    Stack: OpenCV · MediaPipe · scikit-learn · scipy &nbsp;|&nbsp;
+    <span style="color:var(--accent-green)">No GPU required</span>
+  </p>
+  <p style="margin-top:8px;font-size:0.7rem">
+    Datasets: 
+    <a href="https://www.isic-archive.com" target="_blank">ISIC (melanoma)</a> · 
+    <a href="https://www.kaggle.com/competitions/diabetic-retinopathy-detection" target="_blank">Kaggle DR</a> · 
+    <a href="https://www.kaggle.com/datasets/draaslan/blood-cell-count-and-detection" target="_blank">BCCD (blood smear)</a> · 
+    <a href="https://grand-challenge.org/databases/drive/" target="_blank">DRIVE (retinal)</a>
+    &nbsp;|&nbsp; For research and educational use only. Not a substitute for clinical diagnosis.
+  </p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
